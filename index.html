@@ -20,7 +20,6 @@
 		width: 300px;
 		height: 100px;
 		background-color: #e8e8e8;
-		/*display: inline-block;*/
 	}
 	.wrapper {
 		position: relative;
@@ -30,3 +29,145 @@
 
 	</style>
 </head>
+<body>
+<div class="wrapper">
+
+	<div id="container-wormII" class="container">
+		<canvas id="wormII"></canvas>
+	</div>
+
+	<div id="container-worm" class="container">
+		<canvas id="worm"></canvas>
+	</div>
+
+	<div id="container-drop" class="container">
+		<canvas id="drop"></canvas>
+	</div>
+
+	<div id="container-clock" class="container">
+		<canvas id="clock"></canvas>
+	</div>
+
+	<div id="someContainerII" class="container">
+		<canvas id="canvasII"></canvas>
+	</div>
+
+</div>
+<canvas id="target"></canvas>
+
+<script>
+window.onload = function() {
+	var defaultColor = '#4b4b4b';
+
+	var wormSpinnerII = {
+		type : 'wormII',
+		containerId : 'container-wormII',
+		canvasId : 'wormII',
+		arcRadiusOffset : 20,
+		layers : 6,
+		layersDistance : 3,
+		angleA : 0,
+		angleB : 6,
+		speedA : 0.1,
+		speedB : 0.02,
+		lineWidth : 0.5,
+		distMin : 1,
+		distMax : Math.PI * 2 -1,
+		template : {
+			angleA : 0,
+			angleB : 1,
+			speedA : 0.1,
+			speedB : 0.02,
+			headColor : defaultColor,
+			headSize : 3,
+			tailColor : defaultColor,
+			tailSize : 2,
+			bodyColor : defaultColor,
+			bodyStrokeWidth : 1,
+			distMin : 1,
+			distMax : 4,
+			pSize : 1
+		}
+	};
+
+	canvasSpinners.initSpinner(wormSpinnerII);
+
+	var wormSpinner = {
+		type : 'worm',
+		containerId : 'container-worm',
+		canvasId : 'worm',
+		angleA : 0,
+		angleB : 1,
+		speedA : 0.1,
+		speedB : 0.02,
+		headColor : defaultColor,
+		headSize : 3,
+		tailColor : defaultColor,
+		tailSize : 2,
+		bodyColor : defaultColor,
+		bodyStrokeWidth : 1,
+		distMin : 1,
+		distMax : 4
+	};
+
+	canvasSpinners.initSpinner(wormSpinner);
+
+	var dropSpinner = {
+		type : 'drop',
+		containerId : 'container-drop',
+		canvasId : 'drop',
+		arcRadius : 20,
+		lineColor : defaultColor,
+		lineWidth : 1,
+		dotColor : defaultColor,
+		dotSize : 3,
+		opacity : 0.9
+	};
+
+	canvasSpinners.initSpinner(dropSpinner);
+
+	var clockSpinner = {
+		type : 'clockSpinner',
+		containerId : 'container-clock',
+		canvasId : 'clock',
+		arcRadius : 20,
+		speed : 0.1,
+		startAngleMinutes : 0,
+		startAngleHours : 0,
+		armWidthMinute : 1.25,
+		armWidthHour : 2,
+		clockLineWidth : 2.5,
+		armColorMinute : '#4b4b4b',
+		armColorHour : '#4b4b4b',
+		clockColorLine : '#4b4b4b',
+		clockColorFill : '#ffffff',
+		hoursIndicator : false,
+		indicatorColorFill : '#4b4b4b',
+		opacity : 0.8
+	};
+
+	canvasSpinners.initSpinner(clockSpinner);
+
+	var catchUp = {
+		type : 'catchUpSpinnerII',
+		containerId : 'someContainerII',
+		canvasId : 'canvasII',
+		arcRadius : '',
+		startAngleA : '',
+		stopAngleA : '',
+		startAngleB : '',
+		stopAngleB : '',
+		angleSpeed : '',
+		speedA : '',
+		speedB : '',
+		color : '',
+		tech : false,
+		lineWidth : '',
+		particleSize : ''
+	};
+
+	canvasSpinners.initSpinner(catchUp);	
+};
+</script>
+</body>
+</html>
