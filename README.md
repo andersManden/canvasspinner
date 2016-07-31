@@ -3,6 +3,8 @@
 Canvasspinner is a small library of, easy to use, spinners, which is made with javascript and the HTML5 canvas element. 
 
 
+
+# How to spin
 All you need to do is to include the provided files into the head.
 
 //You only need a container div, with a canvas element embedded. Like this
