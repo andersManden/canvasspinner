@@ -25,10 +25,13 @@ var spinnerObj = {
 canvasspinner.init(spinnerObj);
 
 
-
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.
 
+# Disclaimer
+The canvasspinner project is at a very early stage, so be aware that some spinners not yet are fully customizable yet. And others might be glitchy etc...
 
-This library has been build upon the math and particle library created and taught by Keith Peters.
+# Credits
+
+This library has been build upon the math and particle library created and taught by Keith Peters. So special shout out to Keith, peace!
 
 
