@@ -11,14 +11,14 @@ All you need to do is to include the provided files into the head.
 "</div>"<br>
 
 <i>Then you need to put these id's into an object. </i> <br>
-var spinnerObj = { <br>
+var <b>spinnerObj</b> = { <br>
     type : "clockSpinner", <br>
     containerId : "containerId",<br>
     canvasId : "canvasId"<br>
 };<br>
 
 <i>Then call the canvasspinner, and your done.</i><br>
-<b>canvasspinner.init(spinnerObj);</b>
+canvasspinner.init(<b>spinnerObj</b>);
 
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.</b></b>
 
