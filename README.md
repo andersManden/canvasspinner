@@ -5,19 +5,19 @@ Canvasspinner is a small library of, easy to use, spinners, which is made with j
 # How to spin
 All you need to do is to include the provided files into the head.
 
-//You only need a container div, with a canvas element embedded. Like this<br>
+<i>You only need a container div, with a canvas element embedded. Like this.</i><br>
 "<div id="containerId">"<br>
   "<canvas id="canvasId"></canvas>"<br>
 "</div>"<br>
 
-//Then you need to put these id's into an object <br>
+<i>Then you need to put these id's into an object. </i> <br>
 var spinnerObj = { <br>
     type : "clockSpinner", <br>
     containerId : "containerId",<br>
     canvasId : "canvasId"<br>
 };<br>
 
-//Then call the canvasspinner, and your done.<br>
+<i>Then call the canvasspinner, and your done.</i><br>
 <b>canvasspinner.init(spinnerObj);</b>
 
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.</b></b>
