@@ -12,7 +12,7 @@ All you need to do is to include the provided files into the head.
 
 //Then you need to put these id's into an object <br>
 var spinnerObj = { <br>
-    type : "clockSpinner", // spinner name <br>
+    type : "clockSpinner", <br>
     containerId : "containerId",<br>
     canvasId : "canvasId"<br>
 };<br>
