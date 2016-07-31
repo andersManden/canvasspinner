@@ -20,7 +20,7 @@ var spinnerObj = {
 };
 
 //Then call the canvasspinner, and your done.<br>
-canvasspinner.init(spinnerObj);
+<b>canvasspinner.init(spinnerObj);</b>
 
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.
 
