@@ -12,7 +12,6 @@ All you need to do is to include the provided files into the head.
   <canvas id="canvasId"></canvas>
 </div>
 
-
 //Then you need to put these id's into an object
 var spinnerObj = {
   type : "clockSpinner", // spinner name
@@ -20,10 +19,8 @@ var spinnerObj = {
   canvasId : "canvasId"
 };
 
-
 //Then call the canvasspinner, and your done.
 canvasspinner.init(spinnerObj);
-
 
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.
 
