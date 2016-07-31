@@ -19,7 +19,7 @@ var spinnerObj = {
   canvasId : "canvasId"
 };
 
-//Then call the canvasspinner, and your done.
+//Then call the canvasspinner, and your done.<br>
 canvasspinner.init(spinnerObj);
 
 Every spinner is ofcourse customizable, and each example is demonstrated in the index.html file.
