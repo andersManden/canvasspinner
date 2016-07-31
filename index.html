@@ -31,6 +31,10 @@
 </head>
 <body>
 <div class="wrapper">
+	
+	<div id="container-star" class="container">
+		<canvas id="star"></canvas>
+	</div>
 
 	<div id="container-wormII" class="container">
 		<canvas id="wormII"></canvas>
@@ -58,6 +62,12 @@
 <script>
 window.onload = function() {
 	var defaultColor = '#4b4b4b';
+	
+	var star =  {
+		type : 'star',
+		containerId : 'container-star',
+		canvasId : 'star'
+	};
 
 	var wormSpinnerII = {
 		type : 'wormII',
