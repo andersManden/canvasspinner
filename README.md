@@ -25,6 +25,6 @@ The canvasspinner project is at a very early stage, so be aware that some spinne
 
 # Credits
 
-This library has been build upon the math and particle library created and taught by Keith Peters. So special shout out to Keith, peace!
+This library has been build upon the utils and particle library created by Keith Peters in the coding math video series. 
 
 
