@@ -5,10 +5,8 @@ Canvasspinner is a small library of, easy to use, spinners, which is made with j
 # How to spin
 All you need to do is to include the provided files into the head.
 
-<i>You only need a container div, with a canvas element embedded. Like this.</i><br>
-"<div id="containerId">"<br>
-  "<canvas id="canvasId"></canvas>"<br>
-"</div>"<br>
+<i>You only need a container div, with a canvas element embedded. </i><br>
+
 
 <i>Then you need to put these id's into an object. </i> <br>
 var <b>spinnerObj</b> = { <br>
