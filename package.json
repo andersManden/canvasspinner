@@ -1,0 +1,23 @@
+{
+  "name": "canvasspinner",
+  "version": "1.0.0",
+  "description": "Its a small library of spinners/loaders made in javascript with the canvas element",
+  "main": "canvasspinner.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anderssim/canvasspinner.git"
+  },
+  "author": "Anders Simonsen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anderssim/canvasspinner/issues"
+  },
+  "homepage": "https://github.com/anderssim/canvasspinner#readme"
+}
