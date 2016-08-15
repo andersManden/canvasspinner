@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="spinners/theExperiments.js"></script>
 	<script type="text/javascript" src="spinners/theMultiLayer.js"></script>
 	<script type="text/javascript" src="spinners/theGravity.js"></script>
+	<script type="text/javascript" src="spinners/theTail.js"></script>
 	<script type="text/javascript" src="lib/particle.js"></script>
 	<script type="text/javascript" src="lib/utils.js"></script>
 
@@ -36,7 +37,12 @@
 </head>
 <body>
 <div class="wrapper">
-	
+
+	<div id="container-tail" class="container">
+		<canvas id="tail">
+		</canvas>
+	</div>
+
 	<div id="container-star" class="container">
 		<canvas id="star">
 		</canvas>
@@ -68,7 +74,15 @@
 <script>
 window.onload = function() {
 	var defaultColor = '#4b4b4b';
-	
+
+	var theTail = {
+		type : 'theTail',
+		containerId : 'container-tail',
+		canvasId : 'tail'
+	};
+
+	canvasSpinners.initSpinner(theTail);
+
 	var star =  {
 		type : 'star',
 		containerId : 'container-star',
