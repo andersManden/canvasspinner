@@ -3,15 +3,16 @@ var canvasSpinners = (function(){
     function initSpinner(spinner) {
         switch (spinner.type) {
             case 'star':
-                // starSpinner(spinner);
+                theExperiments.init(spinner);
                 break;
             case 'wormII':
-                wormSpinnerII(spinner);
+                theMultiLayer.init(spinner);
                 break;
             case 'worm':
                 theWorm.init(spinner);
                 break;
             case 'drop':
+                theGravity.init();
                 dropSpinner(spinner);
                 break;
             case 'spokeSpinner':
@@ -23,184 +24,6 @@ var canvasSpinners = (function(){
             case 'catchUpSpinnerII' :
                 catchUpSpinnerII(spinner);
                 break;
-        }
-    }
-
-     function starSpinner (spinner) {
-         var canvas = null,
-             context = null,
-             width = null,
-             height = null;
-
-         var arcRadiusA = 20,
-             arcRadiusB = arcRadiusA + 8,
-             number = 8,
-             speed = 0.03,
-             speedA = 0.01,
-             size = 'shrink';
-
-
-
-         var particlesA = [];
-         var particlesB = [];
-
-         init(spinner);
-
-         function init (spinner) {
-             var container = document.getElementById(spinner.containerId);
-             canvas = document.getElementById(spinner.canvasId);
-             context = canvas.getContext('2d');
-             width = canvas.width = container.offsetWidth;
-             height = canvas.height = container.offsetHeight;
-
-             particlesA = canvasSpinners.particleFactory(number, width, height, arcRadiusA, 0, false, null, null, null);
-             particlesB = canvasSpinners.particleFactory(number, width, height, arcRadiusB, Math.PI / number, false, null, null, null);
-
-             clearCanvas();
-         }
-         
-         
-
-         function clearCanvas() {
-             context.clearRect(0, 0, width, height);
-             render();
-             requestAnimationFrame(clearCanvas);
-         }
-
-         function render () {
-             context.save();
-
-             for (var i = 0; i < number; i++) {
-                 context.beginPath();
-                 context.moveTo(particlesA[i].x = width / 2 + Math.cos(particlesA[i].angleStart) * arcRadiusA, particlesA[i].y = height / 2 + Math.sin(particlesA[i].angleStart) * arcRadiusA);
-                 context.lineTo(particlesB[i].x = width / 2 + Math.cos(particlesB[i].angleStart) * arcRadiusB, particlesB[i].y = height / 2 + Math.sin(particlesB[i].angleStart) * arcRadiusB);
-                 if (i < number -1) {
-                    context.lineTo(particlesA[i + 1].x , particlesA[i + 1].y);
-                 } else {
-                    context.moveTo(particlesB[number-1].x , particlesB[number-1].y);
-                    context.lineTo(particlesA[0].x, particlesA[0].y);
-                 }
-                 context.strokeStyle = '#4b4b4b';
-                 context.stroke();
-
-                 particlesA[i].angleStart += speed;
-                 particlesB[i].angleStart += speed;
-
-                 if (size === 'shrink') {
-                     arcRadiusB -= speedA;
-                     //speedA += 0.01;
-                     if (arcRadiusB <= arcRadiusA - 8 ) {
-                         size = 'grow';
-                     }
-                 } else if (size === 'grow') {
-                     arcRadiusB += speedA;
-                     //speedA -= 0.01 ;
-                     if (arcRadiusB >= arcRadiusA + 8 ) {
-                         size = 'shrink';
-                     }
-                 }
-
-
-             }
-
-             context.restore();
-         }
-     }
-
-    function wormSpinnerII (spinner) {
-        var canvas = null,
-            context = null,
-            width = null,
-            height = null;
-
-        var spinnerLayers = null,
-            run  = 'head';
-
-        var layers = [];
-
-        init(spinner);
-
-        function init (spinner) {
-            var container = document.getElementById(spinner.containerId);
-            canvas = document.getElementById(spinner.canvasId);
-            context = canvas.getContext('2d');
-            width = canvas.width = container.offsetWidth;
-            height = canvas.height = container.offsetHeight;
-
-            spinnerLayers = spinner.layers;
-            layers = layersFactory(spinner);
-
-            clearCanvas();
-        }
-
-        function layersFactory (spinner) {
-            var layers = [];
-            var distance = spinner.arcRadiusOffset;
-            for (var i = 0; i < spinner.layers; i++) {
-                var layer = {
-                    angleA : 0,
-                    angleB : 1,
-                    speedA : 0.1,
-                    speedB : 0.02,
-                    headColor : spinner.template.headColor,
-                    headSize : 3,
-                    tailColor : spinner.template.tailColor,
-                    tailSize : 2,
-                    bodyColor : spinner.template.bodyColor,
-                    bodyStrokeWidth : 1,
-                    distMin : 1,
-                    distMax : 4,
-                    arcRadius :distance,
-                    pSize : 1,
-                    pHead : canvasSpinners.particleFactory(1, width, height, distance, 0, false, null, null, null),
-                    pTail : canvasSpinners.particleFactory(1, width, height, distance, 0, false, null, null, null)
-                };
-                layers.push(layer);
-                distance = distance - spinner.layersDistance;
-            }
-            return layers;
-        }
-
-        function clearCanvas() {
-            context.clearRect(0, 0, width, height);
-            render();
-            requestAnimationFrame(clearCanvas);
-        }
-
-        function render () {
-            context.save();
-
-            for (var i = 0; i < spinnerLayers; i++) {
-                context.beginPath();
-                context.arc(layers[i].pHead[0].x = width / 2 + Math.cos(spinner.angleA) * layers[i].arcRadius, layers[i].pHead[0].x = height / 2 + Math.sin(spinner.angleA) * layers[i].arcRadius, 0.5, 0, Math.PI * 2, false);
-                context.arc(layers[i].pTail[0].x = width / 2 + Math.cos(spinner.angleB) * layers[i].arcRadius, layers[i].pTail[0].x = height / 2 + Math.sin(spinner.angleB) * layers[i].arcRadius, 0.5, 0, Math.PI * 2, false);
-                context.fillStyle = '#4b4b4b';
-                context.fill();
-
-                context.beginPath();
-                context.arc(width / 2, height / 2, layers[i].arcRadius, spinner.angleA, spinner.angleB, false);
-                context.strokeStyle = '#4b4b4b'; //layers[i].bodyColor
-                context.lineWidth = spinner.lineWidth;
-                context.stroke();
-
-            }
-
-            var dist = spinner.angleB - spinner.angleA;
-            if (run === 'tail') {
-                spinner.angleA += spinner.speedA;
-                spinner.angleB += spinner.speedB;
-                if (dist < spinner.distMin) {
-                    run = 'head';
-                }
-            } else if (run === 'head') {
-                spinner.angleA += spinner.speedB;
-                spinner.angleB += spinner.speedA;
-                if (dist > spinner.distMax) {
-                    run = 'tail';
-                }
-            }
-
-            context.restore();
         }
     }
 
