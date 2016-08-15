@@ -2,6 +2,9 @@ var canvasSpinners = (function(){
 
     function initSpinner(spinner) {
         switch (spinner.type) {
+            case 'theCircle':
+                theCircle.init(spinner);
+                break;
             case 'theTail':
                 theTail.init(spinner);
                 break;

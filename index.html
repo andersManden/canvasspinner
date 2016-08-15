@@ -9,6 +9,7 @@
 	<script type="text/javascript" src="spinners/theMultiLayer.js"></script>
 	<script type="text/javascript" src="spinners/theGravity.js"></script>
 	<script type="text/javascript" src="spinners/theTail.js"></script>
+	<script type="text/javascript" src="spinners/theCircle.js"></script>
 	<script type="text/javascript" src="lib/particle.js"></script>
 	<script type="text/javascript" src="lib/utils.js"></script>
 
@@ -37,6 +38,11 @@
 </head>
 <body>
 <div class="wrapper">
+
+	<div id="container-circle" class="container">
+		<canvas id="circle">
+		</canvas>
+	</div>
 
 	<div id="container-tail" class="container">
 		<canvas id="tail">
@@ -74,6 +80,28 @@
 <script>
 window.onload = function() {
 	var defaultColor = '#4b4b4b';
+
+
+
+	var theCircle = {
+		type : 'theCircle',
+		containerId : 'container-circle',
+		canvasId : 'circle',
+		angleA : 0,
+		angleB : 1,
+		speedA : 0.1,
+		speedB : 0.05,
+		headColor : defaultColor,
+		headSize : 0,
+		tailColor : defaultColor,
+		tailSize : 0,
+		bodyColor : defaultColor,
+		bodyStrokeWidth : 4,
+		distMin : 0.5,
+		distMax : 5.5
+	};
+
+	canvasSpinners.initSpinner(theCircle);
 
 	var theTail = {
 		type : 'theTail',
