@@ -1,5 +1,4 @@
-var theWatch = (function(spinner){
-    console.log(spinner);
+var theWatch = (function(){
     var canvas = null,
         context = null,
         width = null,
