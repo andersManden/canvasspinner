@@ -45,8 +45,8 @@ var theMultiLayer = (function(){
                 distMax : 4,
                 arcRadius :distance,
                 pSize : 1,
-                pHead : canvasSpinners.particleFactory(1, width, height, distance, 0, false, null, null, null),
-                pTail : canvasSpinners.particleFactory(1, width, height, distance, 0, false, null, null, null)
+                pHead : spinners.particleFactory(1, width, height, distance, 0, false, null, null, null),
+                pTail : spinners.particleFactory(1, width, height, distance, 0, false, null, null, null)
             };
             layers.push(layer);
             distance = distance - spinner.layersDistance;

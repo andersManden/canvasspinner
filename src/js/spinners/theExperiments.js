@@ -21,8 +21,8 @@ var theExperiments = (function(){
         width = canvas.width = container.offsetWidth;
         height = canvas.height = container.offsetHeight;
 
-        particlesA = canvasSpinners.particleFactory(number, width, height, arcRadiusA, 0, false, null, null, null);
-        particlesB = canvasSpinners.particleFactory(number, width, height, arcRadiusB, Math.PI / number, false, null, null, null);
+        particlesA = spinners.particleFactory(number, width, height, arcRadiusA, 0, false, null, null, null);
+        particlesB = spinners.particleFactory(number, width, height, arcRadiusB, Math.PI / number, false, null, null, null);
 
         clearCanvas();
     }

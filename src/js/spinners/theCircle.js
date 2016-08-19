@@ -44,7 +44,7 @@ var theCircle = (function(){
         distMin = spinner.distMin ? spinner.distMin : 1;
         distMax = spinner.distMax ? spinner.distMax : 4;
 
-        particles = canvasSpinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
+        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
 
         clearCanvas();
     }

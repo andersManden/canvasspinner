@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title></title>
-	<script type="text/javascript" src="assets/spinners.min.js"></script>
+	<!--<script type="text/javascript" src="assets/spinners.min.js"></script>-->
+	<script type="text/javascript" src="assets/spinners.js"></script>
 	<script type="text/javascript" src="lib/particle.js"></script>
 	<script type="text/javascript" src="lib/utils.js"></script>
 
@@ -31,6 +32,11 @@
 </head>
 <body>
 <div class="wrapper">
+
+	<div id="container-theGear" class="container">
+		<canvas id="theGear">
+		</canvas>
+	</div>
 
 	<div id="container-circle" class="container">
 		<canvas id="circle">
@@ -67,6 +73,11 @@
 		<canvas id="canvasII"></canvas>
 	</div>
 
+	<div id="container-weird" class="container">
+		<canvas id="weird"></canvas>
+	</div>
+
+
 </div>
 <canvas id="target"></canvas>
 
@@ -74,6 +85,22 @@
 window.onload = function() {
 	var defaultColor = '#4b4b4b';
 
+	var theGear = {
+		type: 'theGear',
+		containerId : 'container-theGear',
+		canvasId : 'theGear'
+	};
+
+	spinners.init(theGear);
+
+
+	var theWeirdSpoke = {
+		type: 'theWeirdSpoke',
+		containerId : 'container-weird',
+		canvasId : 'weird'
+	};
+
+	spinners.init(theWeirdSpoke);
 
 
 	var theCircle = {
@@ -94,7 +121,7 @@ window.onload = function() {
 		distMax : 5.5
 	};
 
-	canvasSpinners.initSpinner(theCircle);
+	spinners.init(theCircle);
 
 	var theTail = {
 		type : 'theTail',
@@ -102,7 +129,7 @@ window.onload = function() {
 		canvasId : 'tail'
 	};
 
-	canvasSpinners.initSpinner(theTail);
+	spinners.init(theTail);
 
 	var star =  {
 		type : 'star',
@@ -110,7 +137,7 @@ window.onload = function() {
 		canvasId : 'star'
 	};
 	
-	canvasSpinners.initSpinner(star);
+	spinners.init(star);
 
 	var wormSpinnerII = {
 		type : 'wormII',
@@ -143,7 +170,7 @@ window.onload = function() {
 		}
 	};
 
-	canvasSpinners.initSpinner(wormSpinnerII);
+	spinners.init(wormSpinnerII);
 
 	var wormSpinner = {
 		type : 'worm',
@@ -163,7 +190,7 @@ window.onload = function() {
 		distMax : 4
 	};
 
-	canvasSpinners.initSpinner(wormSpinner);
+	spinners.init(wormSpinner);
 
 	var dropSpinner = {
 		type : 'drop',
@@ -177,7 +204,7 @@ window.onload = function() {
 		opacity : 0.9
 	};
 
-	canvasSpinners.initSpinner(dropSpinner);
+	spinners.init(dropSpinner);
 
 	var clockSpinner = {
 		type : 'theWatch',
@@ -199,7 +226,7 @@ window.onload = function() {
 		opacity : 0.8
 	};
 
-	canvasSpinners.initSpinner(clockSpinner);
+	spinners.init(clockSpinner);
 
 	var catchUp = {
 		type : 'catchUpSpinnerII',
@@ -219,7 +246,7 @@ window.onload = function() {
 		particleSize : ''
 	};
 
-	canvasSpinners.initSpinner(catchUp);	
+	spinners.init(catchUp);	
 };
 </script>
 </body>

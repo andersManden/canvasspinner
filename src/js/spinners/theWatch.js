@@ -44,7 +44,7 @@ var theWatch = (function(){
         opacity = spinner.opacity ? spinner.opacity : 1;
 
         if (spinner.hoursIndicator) {
-            particles = canvasSpinners.particleFactory(12, width, height, arcRadius / 1.2, 0, false, null, null, null);
+            particles = spinners.particleFactory(12, width, height, arcRadius / 1.2, 0, false, null, null, null);
         }
         clearCanvas();
     }

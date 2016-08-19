@@ -20,7 +20,7 @@ var theTail = (function(){
         width = canvas.width = container.offsetWidth;
         height = canvas.height = container.offsetHeight;
 
-        particles = canvasSpinners.particleFactory(particleNumber, width, height, arcRadius, 0, false, null, null, null);
+        particles = spinners.particleFactory(particleNumber, width, height, arcRadius, 0, false, null, null, null);
         setParticleSize();
         setParticlePosition();
         clearCanvas();
