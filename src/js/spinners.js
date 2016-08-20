@@ -29,6 +29,9 @@ var spinners = (function(){
             case 'catchUpSpinnerII' :
                 theCatchupExperiment.init(spinner);
                 break;
+            case 'theGear' :
+                theGear.init(spinner);
+                break;
         }
     }
 
