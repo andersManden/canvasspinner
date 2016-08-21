@@ -9,11 +9,11 @@ All you need to do is to include the provided files into the head.
 
 
 <i>Then you need to put these id's into an object. </i> <br>
-var <b>spinnerObj</b> = { <br>
+'var <b>spinnerObj</b> = { <br>
     type : "clockSpinner", <br>
     containerId : "containerId",<br>
     canvasId : "canvasId"<br>
-};<br>
+};'<br>
 
 <i>Then call the canvasspinner, and your done.</i><br>
 canvasspinner.init(<b>spinnerObj</b>);
