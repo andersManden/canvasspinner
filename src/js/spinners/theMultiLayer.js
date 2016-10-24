@@ -15,15 +15,26 @@ var theMultiLayer = (function(){
         var container = document.getElementById(spinnerData.containerId);
         canvas = document.getElementById(spinnerData.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         spinner = spinnerData;
 
         spinnerLayers = spinnerData.layers;
         layers = layersFactory(spinnerData);
 
-        clearCanvas();
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1,
+            ratio = devicePixelRatio / backingStoreRatio;
+
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function layersFactory (spinner) {
@@ -54,10 +65,10 @@ var theMultiLayer = (function(){
         return layers;
     }
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function render () {

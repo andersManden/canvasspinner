@@ -13,17 +13,30 @@ var theTail = (function(){
 
     var particles = [];
 
+
+
     function init (spinner) {
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         particles = spinners.particleFactory(particleNumber, width, height, arcRadius, 0, false, null, null, null);
         setParticleSize();
         setParticlePosition();
-        clearCanvas();
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1,
+            ratio = devicePixelRatio / backingStoreRatio;
+
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function setParticleSize () {
@@ -42,11 +55,11 @@ var theTail = (function(){
         }
     }
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
         updateAngle();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function updateAngle () {

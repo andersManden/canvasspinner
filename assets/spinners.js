@@ -266,13 +266,32 @@ var theCircle = (function(){
 
     var particles = [];
 
+    var ratio = null;
+
     function init (spinner) {
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
 
+        retinaDimensions(container);
+        config(spinner);
+
+        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
+
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
+    }
+
+    function config (spinner) {
         arcRadius = spinner.arcRadius ? spinner.arcRadius : 20;
         angleHead = spinner.angleA ? spinner.angleA : 0;
         angleTail = spinner.angleB ? spinner.angleB : 1;
@@ -286,17 +305,13 @@ var theCircle = (function(){
         bodyStrokeWidth = spinner.bodyStrokeWidth ? spinner.bodyStrokeWidth : 1;
         distMin = spinner.distMin ? spinner.distMin : 1;
         distMax = spinner.distMax ? spinner.distMax : 4;
-
-        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
-
-        clearCanvas();
     }
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         setSpeed();
         render();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function setSpeed() {
@@ -460,17 +475,28 @@ var theGear = (function(){
     var particlesA = [];
     var particlesB = [];
 
+    var ratio = null;
+
     function init (spinner) {
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         particlesA = spinners.particleFactory(number, width, height, arcRadiusA,  Math.PI / number, false, null, null, null);
         particlesB = spinners.particleFactory(number, width, height, arcRadiusB, Math.PI / number, false, null, null, null);
-
         clearCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function clearCanvas() {
@@ -603,15 +629,26 @@ var theMultiLayer = (function(){
         var container = document.getElementById(spinnerData.containerId);
         canvas = document.getElementById(spinnerData.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         spinner = spinnerData;
 
         spinnerLayers = spinnerData.layers;
         layers = layersFactory(spinnerData);
 
-        clearCanvas();
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1,
+            ratio = devicePixelRatio / backingStoreRatio;
+
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function layersFactory (spinner) {
@@ -642,10 +679,10 @@ var theMultiLayer = (function(){
         return layers;
     }
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function render () {
@@ -702,17 +739,30 @@ var theTail = (function(){
 
     var particles = [];
 
+
+
     function init (spinner) {
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         particles = spinners.particleFactory(particleNumber, width, height, arcRadius, 0, false, null, null, null);
         setParticleSize();
         setParticlePosition();
-        clearCanvas();
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1,
+            ratio = devicePixelRatio / backingStoreRatio;
+
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function setParticleSize () {
@@ -731,11 +781,11 @@ var theTail = (function(){
         }
     }
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
         updateAngle();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function updateAngle () {
@@ -791,9 +841,23 @@ var theWatch = (function(){
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
 
+        retinaDimensions(container);
+        config(spinner);
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
+    }
+
+    function config (spinner) {
         arcRadius = spinner.arcRadius ? spinner.arcRadius : 15;
         speedMinutes = spinner.speed ? spinner.speed : 0.1;
         speedHour = speedMinutes / 12;
@@ -812,13 +876,13 @@ var theWatch = (function(){
         if (spinner.hoursIndicator) {
             particles = spinners.particleFactory(12, width, height, arcRadius / 1.2, 0, false, null, null, null);
         }
-        clearCanvas();
     }
+    
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function render () {
@@ -989,6 +1053,25 @@ var theWorm = (function(){
         width = canvas.width = container.offsetWidth;
         height = canvas.height = container.offsetHeight;
 
+        retinaDimensions(container);
+        config(spinner);
+
+        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
+
+        clearCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
+    }
+
+    function config (spinner) {
         arcRadius = spinner.arcRadius ? spinner.arcRadius : 20;
         angleA = spinner.angleA ? spinner.angleA : 0;
         angleB = spinner.angleB ? spinner.angleB : 1;
@@ -1002,10 +1085,6 @@ var theWorm = (function(){
         bodyStrokeWidth = spinner.bodyStrokeWidth ? spinner.bodyStrokeWidth : 1;
         distMin = spinner.distMin ? spinner.distMin : 1;
         distMax = spinner.distMax ? spinner.distMax : 4;
-
-        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
-
-        clearCanvas();
     }
 
     function clearCanvas() {

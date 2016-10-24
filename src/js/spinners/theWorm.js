@@ -28,6 +28,25 @@ var theWorm = (function(){
         width = canvas.width = container.offsetWidth;
         height = canvas.height = container.offsetHeight;
 
+        retinaDimensions(container);
+        config(spinner);
+
+        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
+
+        clearCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
+    }
+
+    function config (spinner) {
         arcRadius = spinner.arcRadius ? spinner.arcRadius : 20;
         angleA = spinner.angleA ? spinner.angleA : 0;
         angleB = spinner.angleB ? spinner.angleB : 1;
@@ -41,10 +60,6 @@ var theWorm = (function(){
         bodyStrokeWidth = spinner.bodyStrokeWidth ? spinner.bodyStrokeWidth : 1;
         distMin = spinner.distMin ? spinner.distMin : 1;
         distMax = spinner.distMax ? spinner.distMax : 4;
-
-        particles = spinners.particleFactory(2, width, height, arcRadius, 0, false, null, null, null);
-
-        clearCanvas();
     }
 
     function clearCanvas() {

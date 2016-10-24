@@ -15,17 +15,28 @@ var theGear = (function(){
     var particlesA = [];
     var particlesB = [];
 
+    var ratio = null;
+
     function init (spinner) {
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
+
+        retinaDimensions(container);
 
         particlesA = spinners.particleFactory(number, width, height, arcRadiusA,  Math.PI / number, false, null, null, null);
         particlesB = spinners.particleFactory(number, width, height, arcRadiusB, Math.PI / number, false, null, null, null);
-
         clearCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
     }
 
     function clearCanvas() {

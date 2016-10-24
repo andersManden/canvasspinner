@@ -25,9 +25,23 @@ var theWatch = (function(){
         var container = document.getElementById(spinner.containerId);
         canvas = document.getElementById(spinner.canvasId);
         context = canvas.getContext('2d');
-        width = canvas.width = container.offsetWidth;
-        height = canvas.height = container.offsetHeight;
 
+        retinaDimensions(container);
+        config(spinner);
+        initCanvas();
+    }
+
+    function retinaDimensions (container) {
+        var devicePixelRatio = window.devicePixelRatio || 1,
+            backingStoreRatio = context.webkitBackingStorePixelRatio || context.mozBackingStorePixelRatio || context.msBackingStorePixelRatio || context.oBackingStorePixelRatio || context.backingStorePixelRatio || 1;
+        ratio = devicePixelRatio / backingStoreRatio;
+        width = canvas.width = container.offsetWidth * ratio;
+        height = canvas.height = container.offsetHeight * ratio;
+        canvas.style.width = width / ratio + 'px';
+        canvas.style.height = height / ratio + 'px';
+    }
+
+    function config (spinner) {
         arcRadius = spinner.arcRadius ? spinner.arcRadius : 15;
         speedMinutes = spinner.speed ? spinner.speed : 0.1;
         speedHour = speedMinutes / 12;
@@ -46,13 +60,13 @@ var theWatch = (function(){
         if (spinner.hoursIndicator) {
             particles = spinners.particleFactory(12, width, height, arcRadius / 1.2, 0, false, null, null, null);
         }
-        clearCanvas();
     }
+    
 
-    function clearCanvas() {
+    function initCanvas() {
         context.clearRect(0, 0, width, height);
         render();
-        requestAnimationFrame(clearCanvas);
+        requestAnimationFrame(initCanvas);
     }
 
     function render () {
