@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 
 gulp.task('scripts', function () {
     return gulp.src(['src/**/*.js'])
-        .pipe(concat ('canvasspinners.js'))
+        .pipe(concat ('canvasspinner.js'))
         .pipe(gulp.dest('dist'))
         .pipe(gulp.dest('examples/dist'))
         .pipe(uglify())

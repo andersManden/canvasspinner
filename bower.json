@@ -1,0 +1,24 @@
+{
+  "name": "canvasspinner",
+  "description": "Its a small library of spinners/loaders made in javascript with the canvas element",
+  "main": "canvasspinner.js",
+  "authors": [
+    "Anders Simonsen"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "Spinner",
+    "Loader",
+    "Canvas",
+    "JS",
+    "Javascript"
+  ],
+  "homepage": "https://github.com/anderssim/canvasspinner",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
