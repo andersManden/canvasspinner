@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gear</title>
+    <script type="text/javascript" src="dist/canvasspinners.js"></script>
+
+</head>
+<body>
+
+<div id="some-container-id" >
+    <canvas id="some-canvas-id"></canvas>
+</div>
+
+<script>
+    window.onload = function() {
+        var spinnerConfig = {
+            setup : {
+                containerId : 'some-container-id',
+                canvasId : 'some-canvas-id'
+            },
+            options : {
+                color : '#ff0000',
+                speed : 0.08,
+                radius : 60,
+                direction : 'right',
+                opacity : 0.6
+            },
+            advancedOptions : {
+                particles : 80,
+                particleSize : 8,
+                shrinkValue : 0.1,
+                fadeoutValue : 0.025,
+                backgroundStroke : true,
+                backgroundStrokeColor : '#4b4b4b',
+                backgroundStrokeWidth : 24
+            }
+        };
+        new Tailspinner(spinnerConfig);
+    };
+</script>
+</body>
+</html>

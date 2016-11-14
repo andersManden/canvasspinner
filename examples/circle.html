@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Circle</title>
+    <script type="text/javascript" src="dist/canvasspinners.js"></script>
+
+</head>
+<body>
+
+<div id="some-container-id" style="height: 400px;">
+    <canvas id="some-canvas-id"></canvas>
+</div>
+
+<script>
+    window.onload = function() {
+
+        var config = {
+            setup : {
+                containerId : 'some-container-id',
+                canvasId : 'some-canvas-id'
+            },
+            options : {
+                color : '#335b9b',
+                speed : 0.12,
+                radius : 40,
+                direction : 'right',
+                opacity : 0.5
+            },
+            advancedOptions : {
+                angleA : 0,
+                angleB : 1,
+                speedA : 0.1,
+                speedB : 0.05,
+                headColor : '#335b9b',
+                headSize : 15,
+                tailColor : '#335b9b',
+                tailSize : 15,
+                bodyColor : '#335b9b',
+                bodyStrokeWidth : 10,
+                distMin : 0.5,
+                distMax : 5.5
+            }
+        };
+
+        new CircleSpinner(config);
+
+    };
+</script>
+</body>
+</html>

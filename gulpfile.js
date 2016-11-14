@@ -7,11 +7,13 @@ var gulp = require('gulp'),
 
 gulp.task('scripts', function () {
     return gulp.src(['src/**/*.js'])
-        .pipe(concat ('spinners.js'))
-        .pipe(gulp.dest('assets'))
+        .pipe(concat ('canvasspinners.js'))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('examples/dist'))
         .pipe(uglify())
         .pipe( rename ({suffix: '.min'}))
-        .pipe(gulp.dest('assets'))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('examples/dist'))
 });
 
 gulp.task('watch', function(){

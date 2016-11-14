@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clock</title>
+    <script type="text/javascript" src="dist/canvasspinners.js"></script>
+
+</head>
+<body>
+
+<div id="some-container-id" style="height: 400px;">
+    <canvas id="some-canvas-id"></canvas>
+</div>
+
+<script>
+    window.onload = function() {
+
+        var config = {
+            setup : {
+                containerId : 'some-container-id',
+                canvasId : 'some-canvas-id'
+            },
+            options : {
+                color : '#335b9b',
+                speed : 0.12,
+                radius : 200,
+                direction : 'right',
+                opacity : 0.5
+            },
+            advancedOptions : {
+                startAngleMinutes : 0,
+                startAngleHours : 0,
+                armWidthMinute : 3,
+                armWidthHour : 6,
+                clockLineWidth : 10,
+                armColorMinute : 'red',
+                armColorHour : 'red',
+                clockColorLine : 'red',
+                clockColorFill : 'white',
+                hoursIndicator : false,
+                indicatorColorFill : 'red'
+            }
+        };
+        new ClockSpinner(config);
+    };
+</script>
+</body>
+</html>
