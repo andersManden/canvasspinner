@@ -2,7 +2,12 @@
 
 Canvasspinner is a small collection of spinners, made with the canvas element. 
 
-Its easy to use, just do these simple steps.
+
+
+To get started.
+```
+bower install canvasspinner --save
+```
 
 
 Include the canvasspinners.js in you project.
