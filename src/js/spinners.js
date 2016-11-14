@@ -1,7 +1,7 @@
 var spinners = (function(){
 
     function init(spinner) {
-        switch (spinner.type) {
+        switch (spinner.spinner) {
             case 'theCircle':
                 theCircle.init(spinner);
                 break;

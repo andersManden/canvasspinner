@@ -1,4 +1,4 @@
-var theWatch = (function(){
+function ClockSpinner (spinner){
     var canvas = null,
         context = null,
         width = null,
@@ -17,18 +17,28 @@ var theWatch = (function(){
         clockColorLine = null,
         clockColorFill = null,
         indicatorColorFill = null,
+        color = null,
+        direction = null,
         opacity = null;
+
+    var ratio = null;
 
     var particles = [];
 
-    function init (spinner) {
-        var container = document.getElementById(spinner.containerId);
-        canvas = document.getElementById(spinner.canvasId);
-        context = canvas.getContext('2d');
+    init(spinner);
 
+    function init (spinner) {
+        setEnviroment(spinner);
+        standardOptions(spinner);
+        specificOptions(spinner);
+        clearCanvas();
+    }
+
+    function setEnviroment (spinner) {
+        var container = document.getElementById(spinner.setup.containerId);
+        canvas = document.getElementById(spinner.setup.canvasId);
+        context = canvas.getContext('2d');
         retinaDimensions(container);
-        config(spinner);
-        initCanvas();
     }
 
     function retinaDimensions (container) {
@@ -41,32 +51,35 @@ var theWatch = (function(){
         canvas.style.height = height / ratio + 'px';
     }
 
-    function config (spinner) {
-        arcRadius = spinner.arcRadius ? spinner.arcRadius : 15;
-        speedMinutes = spinner.speed ? spinner.speed : 0.1;
+    function standardOptions (spinner) {
+        arcRadius = spinner.options.radius ? spinner.options.radius : 15;
+        speedMinutes = spinner.options.speed ? spinner.options.speed : 0.1;
         speedHour = speedMinutes / 12;
-        startAngleMinutes = spinner.startAngleMinutes ? spinner.startAngleMinutes : 0;
-        startAngleHours = spinner.startAngleHours ? spinner.startAngleHours : 0;
-        armWidthMinute = spinner.armWidthMinute ? spinner.armWidthMinute : 1;
-        armWidthHour = spinner.armWidthHour ? spinner.armWidthHour : 2;
-        clockLineWidth = spinner.clockLineWidth ? spinner.clockLineWidth : 1;
-        armColorMinute = spinner.armColorMinute ? spinner.armColorMinute : '#4b4b4b';
-        armColorHour = spinner.armColorHour ? spinner.armColorHour : '#4b4b4b';
-        clockColorLine = spinner.clockColorLine ? spinner.clockColorLine : '#4b4b4b';
-        clockColorFill = spinner.clockColorFill ? spinner.clockColorFill : '#ffffff';
-        indicatorColorFill = spinner.indicatorColorFill ? spinner.indicatorColorFill : '#4b4b4b';
-        opacity = spinner.opacity ? spinner.opacity : 1;
+        direction = spinner.options.direction ? spinner.options.direction : 'right';
+        opacity = spinner.options.opacity ? spinner.options.opacity : 1;
+    }
 
-        if (spinner.hoursIndicator) {
+    function specificOptions (spinner) {
+        startAngleMinutes = spinner.advancedOptions.startAngleMinutes ? spinner.advancedOptions.startAngleMinutes : 0;
+        startAngleHours = spinner.advancedOptions.startAngleHours ? spinner.advancedOptions.startAngleHours : 0;
+        armWidthMinute = spinner.advancedOptions.armWidthMinute ? spinner.advancedOptions.armWidthMinute : 1;
+        armWidthHour = spinner.advancedOptions.armWidthHour ? spinner.advancedOptions.armWidthHour : 2;
+        clockLineWidth = spinner.advancedOptions.clockLineWidth ? spinner.advancedOptions.clockLineWidth : 1;
+        armColorMinute = spinner.advancedOptions.armColorMinute ? spinner.advancedOptions.armColorMinute : '#4b4b4b';
+        armColorHour = spinner.advancedOptions.armColorHour ? spinner.advancedOptions.armColorHour : '#4b4b4b';
+        clockColorLine = spinner.advancedOptions.clockColorLine ? spinner.advancedOptions.clockColorLine : '#4b4b4b';
+        clockColorFill = spinner.advancedOptions.clockColorFill ? spinner.advancedOptions.clockColorFill : '#ffffff';
+        indicatorColorFill = spinner.advancedOptions.indicatorColorFill ? spinner.advancedOptions.indicatorColorFill : '#4b4b4b';
+
+        if (spinner.advancedOptions.hoursIndicator) {
             particles = spinners.particleFactory(12, width, height, arcRadius / 1.2, 0, false, null, null, null);
         }
     }
-    
 
-    function initCanvas() {
+    function clearCanvas() {
         context.clearRect(0, 0, width, height);
         render();
-        requestAnimationFrame(initCanvas);
+        requestAnimationFrame(clearCanvas);
     }
 
     function render () {
@@ -118,8 +131,14 @@ var theWatch = (function(){
         context.lineWidth = armWidthMinute;
         context.stroke();
 
-        startAngleMinutes += speedMinutes;
-        startAngleHours += speedHour;
+
+        if (direction === 'right') {
+            startAngleMinutes += speedMinutes;
+            startAngleHours += speedHour;
+        } else if (direction === 'left') {
+            startAngleMinutes -= speedMinutes;
+            startAngleHours -= speedHour;
+        }
 
         context.restore();
     }
@@ -127,4 +146,4 @@ var theWatch = (function(){
     return {
         init : init
     }
-})();
+};

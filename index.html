@@ -3,9 +3,9 @@
 <head>
 	<title></title>
 	<!--<script type="text/javascript" src="assets/spinners.min.js"></script>-->
-	<script type="text/javascript" src="assets/spinners.js"></script>
-	<script type="text/javascript" src="lib/particle.js"></script>
-	<script type="text/javascript" src="lib/utils.js"></script>
+	<script type="text/javascript" src="dist/spinners.js"></script>
+	<!--<script type="text/javascript" src="lib/particle.js"></script>-->
+	<!--<script type="text/javascript" src="lib/utils.js"></script>-->
 
 	<style type="text/css">
 	html, body {
@@ -33,25 +33,6 @@
 <body>
 <div class="wrapper">
 
-	<div id="container-theGear" class="container">
-		<canvas id="theGear">
-		</canvas>
-	</div>
-
-	<div id="container-circle" class="container">
-		<canvas id="circle">
-		</canvas>
-	</div>
-
-	<div id="container-tail" class="container">
-		<canvas id="tail">
-		</canvas>
-	</div>
-
-	<!--<div id="container-star" class="container">-->
-		<!--<canvas id="star">-->
-		<!--</canvas>-->
-	<!--</div>-->
 
 	<div id="container-wormII" class="container">
 		<canvas id="wormII"></canvas>
@@ -61,22 +42,6 @@
 		<canvas id="worm"></canvas>
 	</div>
 
-	<!--<div id="container-drop" class="container">-->
-		<!--<canvas id="drop"></canvas>-->
-	<!--</div>-->
-
-	<div id="container-clock" class="container">
-		<canvas id="clock"></canvas>
-	</div>
-
-	<!--<div id="someContainerII" class="container">-->
-		<!--<canvas id="canvasII"></canvas>-->
-	<!--</div>-->
-
-	<!--<div id="container-weird" class="container">-->
-		<!--<canvas id="weird"></canvas>-->
-	<!--</div>-->
-
 
 </div>
 <canvas id="target"></canvas>
@@ -85,15 +50,6 @@
 window.onload = function() {
 	var defaultColor = '#4b4b4b';
 
-	var theGear = {
-		type: 'theGear',
-		containerId : 'container-theGear',
-		canvasId : 'theGear'
-	};
-
-	spinners.init(theGear);
-
-
 	var theWeirdSpoke = {
 		type: 'theWeirdSpoke',
 		containerId : 'container-weird',
@@ -101,35 +57,6 @@ window.onload = function() {
 	};
 
 //	spinners.init(theWeirdSpoke);
-
-
-	var theCircle = {
-		type : 'theCircle',
-		containerId : 'container-circle',
-		canvasId : 'circle',
-		angleA : 0,
-		angleB : 1,
-		speedA : 0.1,
-		speedB : 0.05,
-		headColor : defaultColor,
-		headSize : 0,
-		tailColor : defaultColor,
-		tailSize : 0,
-		bodyColor : defaultColor,
-		bodyStrokeWidth : 4,
-		distMin : 0.5,
-		distMax : 5.5
-	};
-
-	spinners.init(theCircle);
-
-	var theTail = {
-		type : 'theTail',
-		containerId : 'container-tail',
-		canvasId : 'tail'
-	};
-
-	spinners.init(theTail);
 
 	var star =  {
 		type : 'star',
@@ -206,27 +133,7 @@ window.onload = function() {
 
 //	spinners.init(dropSpinner);
 
-	var clockSpinner = {
-		type : 'theWatch',
-		containerId : 'container-clock',
-		canvasId : 'clock',
-		arcRadius : 20,
-		speed : 0.1,
-		startAngleMinutes : 0,
-		startAngleHours : 0,
-		armWidthMinute : 1.25,
-		armWidthHour : 2,
-		clockLineWidth : 2.5,
-		armColorMinute : '#4b4b4b',
-		armColorHour : '#4b4b4b',
-		clockColorLine : '#4b4b4b',
-		clockColorFill : '#ffffff',
-		hoursIndicator : false,
-		indicatorColorFill : '#4b4b4b',
-		opacity : 0.8
-	};
 
-	spinners.init(clockSpinner);
 
 	var catchUp = {
 		type : 'catchUpSpinnerII',
