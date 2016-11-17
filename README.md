@@ -12,7 +12,7 @@ bower install canvasspinner --save
 
 Include the canvasspinners.js in you project.
 ```
-<script type="text/javascript" src="dist/canvasspinners.js"></script>
+<script type="text/javascript" src="dist/canvasspinner.js"></script>
 ```
 
 
